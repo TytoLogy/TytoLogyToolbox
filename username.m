@@ -20,11 +20,12 @@ function [name, os_type] = username
 
 %------------------------------------------------------------------------
 %  Sharad J. Shanbhag
-%	sharad.shanbhag@einstein.yu.edu
+%	sshanbhag@neoucom.edu
 %------------------------------------------------------------------------
 % Created: 2 December, 2009 (SJS)
 %
 % Revisions:
+%	10 May, 2011:	added MACI64 as valied os_type
 %------------------------------------------------------------------------
 % TO DO:
 %------------------------------------------------------------------------
@@ -33,11 +34,12 @@ function [name, os_type] = username
 os_type = computer;
 switch os_type
 	case 'PCWIN'	
-		[status, name] = system('echo %UserName%');
+		[~, name] = system('echo %UserName%');
 		name = name(1:end-1);
 		
-	case {'MAC', 'GLNXA64'}
-		[status, name] = system('whoami');
+	case {'MAC', 'GLNXA64', 'MACI64'}
+		[~, name] = system('whoami');
+		name = sscanf(name, '%s');
 
 	otherwise
 		error([mfilename ': ' os_type ' is unknown computer'])
