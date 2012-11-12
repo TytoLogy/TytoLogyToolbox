@@ -27,12 +27,14 @@ function [p, name] = TytoLogySettingsPath
 % Revisions:
 %	3 Feb 2010 (SJS): name changed to TytoLogySettingsPath.m from
 %							TytoSettingsPath.m
+%	12 Nov 2012 (SJS): changed PCWINroot value to 
+% 							'C:\TytoLogy\TytoLogySettings\'
 %------------------------------------------------------------------------
 % TO DO:
 %------------------------------------------------------------------------
 
 % different paths depending on OS
-PCWINroot = 'C:\TytoLogy\TytoSettings\';
+PCWINroot = 'C:\TytoLogy\TytoLogySettings\';
 MACroot = '/Users/';
 LINUXroot = '/home/';
 
