@@ -36,11 +36,11 @@ function [name, os_type] = username
 os_type = computer;
 switch os_type
 	case {'PCWIN', 'PCWIN64'}	
-		[tmp, name] = system('echo %UserName%');
+		[status, name] = system('echo %UserName%'); %#ok<*ASGLU>
 		name = name(1:end-1);
 		
 	case {'MAC', 'MACI', 'GLNXA64', 'MACI64'}
-		[tmp, name] = system('whoami');
+		[status, name] = system('whoami');
 		name = sscanf(name, '%s');
 
 	otherwise
