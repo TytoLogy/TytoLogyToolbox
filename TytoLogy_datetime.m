@@ -8,7 +8,10 @@ function out = TytoLogy_datetime(f)
 %
 %------------------------------------------------------------------------
 %  Input Argument: 
-%   f = format ('date' or 'time')
+%   f = format string
+% 		'date'				date in 'yyyy-mm-dd' format
+% 		'date_compact'		date in 'yyyymmdd' format
+% 		'time'				time in 'HH:MM:SS' format
 %------------------------------------------------------------------------
 
 %------------------------------------------------------------------------
@@ -20,12 +23,16 @@ function out = TytoLogy_datetime(f)
 % Generalized Version (TytoLogy2_datetime) : May 2012 by GA
 % TytoLogy version (TytoLogy_datetime) : May 2016 by SJS
 %------------------------------------------------------------------------
+% 23 May, 2016 (SJS): added 'date_compact' option
+%------------------------------------------------------------------------
 
 f = lower(f);
 
-if strcmp(f,'date')   
+if strcmpi(f,'date')   
     out = datestr(now,29); % 'yyyy-mm-dd' format
-elseif strcmp(f,'time')
+elseif strcmpi(f,'time')
     out = datestr(now,13); % 'HH:MM:SS' format
+elseif strcmpi(f, 'date_compact') % 'yyyymmdd' format
+	out = [datestr(now, 10) datestr(now, 5) datestr(now, 7)]; 
 end
 
