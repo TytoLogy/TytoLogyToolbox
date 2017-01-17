@@ -34,7 +34,7 @@ function [name, os_type] = username
 
 os_type = computer;
 switch os_type
-	case 'PCWIN'	
+	case {'PCWIN', 'PCWIN64'}	
 		[tmp, name] = system('echo %UserName%');
 		name = name(1:end-1);
 		

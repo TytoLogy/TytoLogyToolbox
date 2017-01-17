@@ -42,7 +42,7 @@ name = username;
 
 % different settings based on OS
 switch os_type
-	case 'PCWIN'
+	case {'PCWIN', 'PCWIN64'}
 		rootp = PCWINroot;
 	case 'MAC'
 		rootp = MACroot;
