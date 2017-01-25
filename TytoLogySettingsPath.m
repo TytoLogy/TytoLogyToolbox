@@ -20,7 +20,7 @@ function [p, name] = TytoLogySettingsPath
 
 %------------------------------------------------------------------------
 %  Sharad J. Shanbhag
-%	sharad.shanbhag@einstein.yu.edu
+%	sshanbhag@neomed.edu
 %------------------------------------------------------------------------
 % Created: 2 December, 2009 (SJS)
 %
@@ -29,13 +29,15 @@ function [p, name] = TytoLogySettingsPath
 %							TytoSettingsPath.m
 %	12 Nov 2012 (SJS): changed PCWINroot value to 
 % 							'C:\TytoLogy\TytoLogySettings\'
+%	18 Jan 2017 (SJS): updating
 %------------------------------------------------------------------------
 % TO DO:
 %------------------------------------------------------------------------
 
 % different paths depending on OS
-PCWINroot = 'C:\TytoLogy\TytoLogySettings\';
+PCWINroot = 'C:\TytoLogy\Toolbox\TytoLogySettings\';
 MACroot = '/Users/';
+MACtytopath = '/Work/Code/Matlab/dev/TytoLogy/TytoLogySettings/';
 LINUXroot = '/home/';
 
 % get os type (mac, pcwin, linux) and username
@@ -46,12 +48,21 @@ name = username;
 switch os_type
 	case 'PCWIN'
 		rootp = PCWINroot;
+		% return full path
+		p = [rootp name filesep];
 	case 'MAC'
 		rootp = MACroot;
+		% return full path
+		p = [rootp name filesep];
 	case 'GLNXA64'
 		rootp = LINUXroot;
+		% return full path
+		p = [rootp name filesep];
+	case 'MACI64'
+		rootp = MACroot;
+		% return full path
+		p = [rootp name MACtytopath];
 	otherwise
 		error([mfilename ': ' os_type ' is unknown computer'])
 end
-% return full path
-p = [rootp name filesep];
+
