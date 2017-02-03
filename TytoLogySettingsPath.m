@@ -29,6 +29,7 @@ function [p, name] = TytoLogySettingsPath
 %							TytoSettingsPath.m
 %	12 Nov 2012 (SJS): changed PCWINroot value to 
 % 							'C:\TytoLogy\TytoLogySettings\'
+%	3 Feb 2017 (SJS): added PCWIN64
 %------------------------------------------------------------------------
 % TO DO:
 %------------------------------------------------------------------------
