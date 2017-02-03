@@ -20,13 +20,14 @@ function [name, os_type] = username
 
 %------------------------------------------------------------------------
 %  Sharad J. Shanbhag
-%	sshanbhag@neoucom.edu
+%	sshanbhag@neomed.edu
 %------------------------------------------------------------------------
 % Created: 2 December, 2009 (SJS)
 %
 % Revisions:
 %	10 May, 2011:	added MACI64 as valid os_type
 %	3 May, 2012:	added MACI as valid os_type
+%	3 Feb 2017 (SJS): added PCWIN64, updated email
 %------------------------------------------------------------------------
 % TO DO:
 %------------------------------------------------------------------------
@@ -34,7 +35,7 @@ function [name, os_type] = username
 
 os_type = computer;
 switch os_type
-	case 'PCWIN'	
+	case {'PCWIN', 'PCWIN64'}
 		[tmp, name] = system('echo %UserName%');
 		name = name(1:end-1);
 		
