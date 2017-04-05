@@ -27,6 +27,7 @@ function [name, os_type] = username
 % Revisions:
 %	10 May, 2011:	added MACI64 as valid os_type
 %	3 May, 2012:	added MACI as valid os_type
+%	19 Apr, 2016:	added PCWIN64 as valid os_type
 %	3 Feb 2017 (SJS): added PCWIN64, updated email
 %------------------------------------------------------------------------
 % TO DO:
@@ -35,12 +36,12 @@ function [name, os_type] = username
 
 os_type = computer;
 switch os_type
-	case {'PCWIN', 'PCWIN64'}
-		[tmp, name] = system('echo %UserName%');
+	case {'PCWIN', 'PCWIN64'}	
+		[status, name] = system('echo %UserName%'); %#ok<*ASGLU>
 		name = name(1:end-1);
 		
 	case {'MAC', 'MACI', 'GLNXA64', 'MACI64'}
-		[tmp, name] = system('whoami');
+		[status, name] = system('whoami');
 		name = sscanf(name, '%s');
 
 	otherwise
