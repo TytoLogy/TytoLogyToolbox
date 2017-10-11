@@ -29,6 +29,7 @@ function [user_name, os_type, host_name] = username
 %	10 May, 2011:	added MACI64 as valid os_type
 %	3 May, 2012:	added MACI as valid os_type
 %	19 Apr, 2016:	added PCWIN64 as valid os_type
+%	3 Feb 2017 (SJS): added PCWIN64, updated email
 %	10 Oct, 2017:	added host_name as output value
 %------------------------------------------------------------------------
 % TO DO:

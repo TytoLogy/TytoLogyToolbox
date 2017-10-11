@@ -29,7 +29,9 @@ function [p, name] = TytoLogySettingsPath
 %							TytoSettingsPath.m
 %	12 Nov 2012 (SJS): changed PCWINroot value to 
 % 							'C:\TytoLogy\TytoLogySettings\'
+%	17 Jan 2017 (SJS): updated pcwinroot path for current settings dir
 %	18 Jan 2017 (SJS): updating
+%	3 Feb 2017 (SJS): added PCWIN64
 %------------------------------------------------------------------------
 % TO DO:
 %------------------------------------------------------------------------
@@ -46,7 +48,7 @@ name = username;
 
 % different settings based on OS
 switch os_type
-	case 'PCWIN'
+	case {'PCWIN', 'PCWIN64'}
 		rootp = PCWINroot;
 		% return full path
 		p = [rootp name filesep];
