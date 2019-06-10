@@ -32,12 +32,14 @@ function [p, name] = TytoLogySettingsPath
 %	17 Jan 2017 (SJS): updated pcwinroot path for current settings dir
 %	18 Jan 2017 (SJS): updating
 %	3 Feb 2017 (SJS): added PCWIN64
+%	10 Jan 2019 (SJS): added check for 'Toolboxes'
 %------------------------------------------------------------------------
 % TO DO:
 %------------------------------------------------------------------------
 
 % different paths depending on OS
 PCWINroot = 'C:\TytoLogy\Toolbox\TytoLogySettings\';
+PCWINroot_alternate = 'C:\TytoLogy\Toolboxes\TytoLogySettings\';
 MACroot = '/Users/';
 MACtytopath = '/Work/Code/Matlab/dev/TytoLogy/TytoLogySettings/';
 LINUXroot = '/home/';
@@ -49,22 +51,49 @@ name = username;
 % different settings based on OS
 switch os_type
 	case {'PCWIN', 'PCWIN64'}
-		rootp = PCWINroot;
+		if exist(PCWINroot, 'dir')
+			rootp = PCWINroot;
+		elseif exist(PCWINroot_alternate, 'dir')
+			rootp = PCWINroot_alternate;
+		else
+			warning('%s: could not find PCWINroot OR PCWINROOT_alternate', ...
+							mfilename);
+			fprintf('%s: using current working directory instead', mfilename);
+			rootp = pwd;
+		end
 		% return full path
-		p = [rootp name filesep];
+		p = [fullfile(rootp, name) filesep];
 	case 'MAC'
-		rootp = MACroot;
+		if exist(MACroot, 'dir')
+			rootp = MACroot;
+		else
+			warning('%s: could not find MACroot', ...
+							mfilename);
+			fprintf('%s: using current working directory instead', mfilename);
+			rootp = pwd;
+		end
 		% return full path
-		p = [rootp name filesep];
+		p = [fullfile(rootp, name) filesep];
 	case 'GLNXA64'
-		rootp = LINUXroot;
+		if exist(LINUXroot, 'dir')
+			rootp = LINUXroot;
+		else
+			warning('%s: could not find LINUXroot', ...
+							mfilename);
+			fprintf('%s: using current working directory instead', mfilename);
+			rootp = pwd;
+		end
 		% return full path
-		p = [rootp name filesep];
+		p = [fullfile(rootp, name) filesep];
 	case 'MACI64'
 		rootp = MACroot;
 		% return full path
-		p = [rootp name MACtytopath];
+		p = fullfile(rootp, name, MACtytopath);
 	otherwise
-		error([mfilename ': ' os_type ' is unknown computer'])
+		warning([mfilename ': ' os_type ' is unknown computer']);
+		fprintf('%s: using current working directory instead', mfilename);
+		rootp = pwd;
+		% return full path
+		p = [fullfile(rootp, name) filesep];		
 end
 
